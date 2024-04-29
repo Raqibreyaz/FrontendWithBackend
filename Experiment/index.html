@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="jokeList">
+
+    </ul>
+    <script>
+        
+        let promise = fetch('http://localhost:3000/api/jokes');
+
+        promise.then((res) => (res.json()))
+            .then((res) => {
+
+                res.map((joke) => {
+                    let ul = document.querySelector('.jokeList');
+
+let str = `<li><h3>${joke.title}</h3><p>${joke.content}</p></li>`
+
+                    ul.insertAdjacentHTML('beforeend', str)
+                }
+                )
+
+
+            }
+            )
+            .catch((error) => {
+                console.log('failed to import data from backend', error);
+            }
+            )
+    </script>
+</body>
+
+</html>
